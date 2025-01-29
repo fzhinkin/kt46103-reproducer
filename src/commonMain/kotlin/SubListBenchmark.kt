@@ -6,7 +6,7 @@ import kotlinx.benchmark.*
 open class SubListBenchmark {
     @Param("1", "10", "100")
     var depth: Int = 0
-    @Param("asList", "toList")
+    @Param("asList", "toList", "toMutableList", "ArrayList")
     var constructionMode: String = ""
 
     private var list = listOf<Any>()
@@ -18,6 +18,8 @@ open class SubListBenchmark {
         list = when (constructionMode) {
             "asList" -> arr.asList()
             "toList" -> arr.toList()
+            "toMutableList" -> arr.toMutableList()
+            "ArrayList" -> ArrayList(arr.asList())
             else -> throw IllegalArgumentException("Unknown construction mode: $constructionMode")
         }
         sublist = list
