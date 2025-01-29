@@ -48,4 +48,11 @@ benchmark {
         register("js")
         register("wasmJs")
     }
+
+    configurations {
+        named("main") {
+            iterationTime = 1
+            iterationTimeUnit = "s"
+        }
+    }
 }
